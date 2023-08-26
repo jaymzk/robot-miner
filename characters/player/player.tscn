@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7i2u6ckv6xqm"]
+
+[ext_resource type="Texture2D" uid="uid://cgq5mcf1sdmkf" path="res://assets/art/spritesheets/robot_miner.png" id="1_rsg8r"]
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_v14lx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5qjr2"]
+radius = 21.0
+height = 64.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(186, 37)
+script = ExtResource("1_v14lx")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, -1)
+texture = ExtResource("1_rsg8r")
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5qjr2")
