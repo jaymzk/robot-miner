@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxmtywq8btrbn"]
+[gd_scene load_steps=9 format=3 uid="uid://bxmtywq8btrbn"]
 
 [ext_resource type="PackedScene" uid="uid://7i2u6ckv6xqm" path="res://characters/player/player.tscn" id="1_wdodk"]
 [ext_resource type="PackedScene" uid="uid://b5ccpwpgm0sip" path="res://world/block.tscn" id="2_06pv1"]
 [ext_resource type="PackedScene" uid="uid://d1kelkxueu1oh" path="res://world/block_1.tscn" id="3_gxnfy"]
 [ext_resource type="PackedScene" uid="uid://cbvnkpy1uike8" path="res://world/block_2.tscn" id="4_2phx5"]
+[ext_resource type="PackedScene" uid="uid://cr1qk5bpy8jnc" path="res://hazards/sawing_platform.tscn" id="5_h0xmv"]
+[ext_resource type="PackedScene" uid="uid://cyexmi5ej424" path="res://props/collectable.tscn" id="6_r3blk"]
+[ext_resource type="PackedScene" uid="uid://car2p30xf4otj" path="res://props/exploding_box.tscn" id="7_g6kol"]
+[ext_resource type="PackedScene" uid="uid://cabv7a4j7bqqm" path="res://props/detonator.tscn" id="8_sm1v2"]
 
 [node name="LevelTemplate" type="Node2D"]
 
@@ -88,3 +92,19 @@ position = Vector2(632, 248)
 
 [node name="Block11" parent="Blocks" instance=ExtResource("4_2phx5")]
 position = Vector2(568, 248)
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="SawingPlatform" parent="Hazards" instance=ExtResource("5_h0xmv")]
+position = Vector2(448, 136)
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Collectable" parent="Collectables" instance=ExtResource("6_r3blk")]
+position = Vector2(584, 160)
+
+[node name="ExplodingBox" parent="." instance=ExtResource("7_g6kol")]
+position = Vector2(1008, 184)
+
+[node name="Detonator" parent="." instance=ExtResource("8_sm1v2")]
+position = Vector2(816, 280)

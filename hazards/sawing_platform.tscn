@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cr1qk5bpy8jnc"]
+
+[ext_resource type="Script" path="res://hazards/sawing_platform.gd" id="1_7h02o"]
+[ext_resource type="Texture2D" uid="uid://bsqolq0gt2y1b" path="res://assets/art/spritesheets/sawing-platform.png" id="1_amnqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oicls"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g38qi"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxpfm"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtkws"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvso8"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5k4f"]
+atlas = ExtResource("1_amnqf")
+region = Rect2(64, 64, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w4mta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oicls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g38qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxpfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtkws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvso8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5k4f")
+}],
+"loop": true,
+"name": &"saw",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbn5r"]
+size = Vector2(56, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgp6r"]
+size = Vector2(47, 8)
+
+[node name="SawingPlatform" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_7h02o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w4mta")
+animation = &"saw"
+autoplay = "saw"
+frame_progress = 0.0409869
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_vbn5r")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(-0.5, -6)
+shape = SubResource("RectangleShape2D_tgp6r")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

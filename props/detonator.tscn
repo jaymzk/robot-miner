@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://cabv7a4j7bqqm"]
+
+[ext_resource type="Script" path="res://props/detonator.gd" id="1_qhp4c"]
+[ext_resource type="Texture2D" uid="uid://cb53nn3j3hx4e" path="res://assets/art/spritesheets/detonator.png" id="1_qwllk"]
+
+[sub_resource type="Animation" id="Animation_rmd53"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandleCollisonShape:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -40)]
+}
+
+[sub_resource type="Animation" id="Animation_j73on"]
+resource_name = "detonate"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandleCollisonShape:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -40), Vector2(0, -32), Vector2(0, -24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es4y8"]
+_data = {
+"RESET": SubResource("Animation_rmd53"),
+"detonate": SubResource("Animation_j73on")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2og34"]
+size = Vector2(64, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3alj2"]
+size = Vector2(48, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtash"]
+size = Vector2(48, 6.75)
+
+[node name="Detonator" type="StaticBody2D"]
+collision_layer = 16
+script = ExtResource("1_qhp4c")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qwllk")
+hframes = 4
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_es4y8")
+}
+
+[node name="BoxCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_2og34")
+
+[node name="HandleCollisonShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_3alj2")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -51.625)
+shape = SubResource("RectangleShape2D_jtash")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyexmi5ej424"]
+
+[ext_resource type="Script" path="res://props/collectable.gd" id="1_6pfm2"]
+[ext_resource type="Texture2D" uid="uid://b6nwqt6w2i3uq" path="res://assets/art/spritesheets/battery.png" id="1_ji5ff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jaf3x"]
+size = Vector2(20, 32)
+
+[sub_resource type="Animation" id="Animation_dcayv"]
+resource_name = "flash"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_q361l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25fpg"]
+_data = {
+"RESET": SubResource("Animation_q361l"),
+"flash": SubResource("Animation_dcayv")
+}
+
+[node name="Collectable" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_6pfm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ji5ff")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jaf3x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_25fpg")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
