@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://nsphtc6jguss"]
+
+[ext_resource type="Texture2D" uid="uid://c4ek7yac8n3t4" path="res://assets/art/spritesheets/robot-crab.png" id="1_61ylp"]
+[ext_resource type="Script" path="res://characters/enemies/robot_crab.gd" id="1_le4hu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6fan"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqsxr"]
+size = Vector2(12, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ger64"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mneik"]
+size = Vector2(8, 11)
+
+[sub_resource type="Animation" id="Animation_je0pg"]
+resource_name = "move_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerDetectorFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerDetectorRear:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_qxb1j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vp2kq"]
+resource_name = "move_right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerDetectorFront:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(23, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerDetectorRear:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-21, -6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsl6u"]
+_data = {
+"RESET": SubResource("Animation_qxb1j"),
+"move_left": SubResource("Animation_je0pg"),
+"move_right": SubResource("Animation_vp2kq")
+}
+
+[node name="RobotCrab" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_le4hu")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_61ylp")
+hframes = 3
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_e6fan")
+
+[node name="PlayerDetectorFront" type="Area2D" parent="."]
+position = Vector2(23, 1)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectorFront"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_kqsxr")
+
+[node name="PlayerDetectorHead" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectorHead"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_ger64")
+
+[node name="PlayerDetectorRear" type="Area2D" parent="."]
+position = Vector2(-21, -6)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectorRear"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mneik")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qsl6u")
+}
+
+[connection signal="body_entered" from="PlayerDetectorFront" to="." method="_on_player_detector_front_body_entered"]
+[connection signal="body_exited" from="PlayerDetectorFront" to="." method="_on_player_detector_front_body_exited"]
+[connection signal="body_entered" from="PlayerDetectorHead" to="." method="_on_player_detector_head_body_entered"]
+[connection signal="body_entered" from="PlayerDetectorRear" to="." method="_on_player_detector_rear_body_entered"]
+[connection signal="body_exited" from="PlayerDetectorRear" to="." method="_on_player_detector_rear_body_exited"]
