@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4pl1tbt55lq7"]
+
+[ext_resource type="Texture2D" uid="uid://chajhvn54lqob" path="res://assets/art/png_files/battery/battery1.png" id="1_2m33t"]
+[ext_resource type="Script" path="res://GUI/gui.gd" id="1_xxfuq"]
+[ext_resource type="Texture2D" uid="uid://ba5fq35f8of00" path="res://assets/art/png_files/robot-crab/robot_crab0.png" id="2_1xqmf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlaxt"]
+bg_color = Color(0.368627, 0.427451, 0.937255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dsjc"]
+bg_color = Color(0.117647, 0.196078, 0.423529, 1)
+
+[node name="GUI" type="CanvasLayer" groups=["gui"]]
+script = ExtResource("1_xxfuq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Energy" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 24.0
+offset_right = 336.0
+offset_bottom = 51.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nlaxt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0dsjc")
+value = 50.0
+allow_lesser = true
+show_percentage = false
+
+[node name="Battery" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 56.0
+texture = ExtResource("1_2m33t")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = -16.0
+offset_right = 528.0
+offset_bottom = 72.0
+texture = ExtResource("2_1xqmf")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 8.0
+offset_right = 592.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 46
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1

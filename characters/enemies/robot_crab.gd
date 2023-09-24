@@ -4,11 +4,14 @@ extends CharacterBody2D
 
 @export var travel_distance = 100
 
+@export var player_damage = 0.5
+
 var direction = -1
 
 var limit_left
 
 var limit_right
+
 
 var damaging_player = false
 
@@ -26,7 +29,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if damaging_player:
-		print("player being damaged")
+		Global.energy -= player_damage
+		get_tree().call_group("gui", "update_energy")
 	check_position()
 	
 	if not is_on_floor():
@@ -65,6 +69,8 @@ func _on_player_detector_front_body_exited(body):
 	
 
 func _on_player_detector_head_body_entered(body):
+	Global.enemies_destroyed +=1
+	get_tree().call_group("gui", "update_enemies_destroyed")
 	queue_free()
 
 
