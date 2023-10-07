@@ -55,6 +55,11 @@ func animate():
 	
 	if jumping and is_on_floor():
 		jumping = false
+		
+func reset_game():
+	Global.energy = 70
+	Global.enemies_destroyed = 0
+	get_tree().reload_current_scene()
 	
 func die():
 	is_alive = false
@@ -63,7 +68,7 @@ func die():
 	if facing_right:
 		$AnimationPlayer.play("die_right")
 
-func reset_game():
-	Global.enemies_destroyed = 0
-	Global.energy = 70
-	get_tree().reload_current_scene()
+	reset_game()
+	
+
+	

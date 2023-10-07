@@ -1,118 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxmtywq8btrbn"]
+[gd_scene load_steps=2 format=3 uid="uid://dctofa20sj64d"]
 
-[ext_resource type="PackedScene" uid="uid://7i2u6ckv6xqm" path="res://characters/player/player.tscn" id="1_wdodk"]
-[ext_resource type="PackedScene" uid="uid://b5ccpwpgm0sip" path="res://world/block.tscn" id="2_06pv1"]
-[ext_resource type="PackedScene" uid="uid://d1kelkxueu1oh" path="res://world/block_1.tscn" id="3_gxnfy"]
-[ext_resource type="PackedScene" uid="uid://cbvnkpy1uike8" path="res://world/block_2.tscn" id="4_2phx5"]
-[ext_resource type="PackedScene" uid="uid://cr1qk5bpy8jnc" path="res://hazards/sawing_platform.tscn" id="5_h0xmv"]
-[ext_resource type="PackedScene" uid="uid://dt4i3niuile0" path="res://props/battery.tscn" id="6_n8e0l"]
-[ext_resource type="PackedScene" uid="uid://car2p30xf4otj" path="res://props/exploding_box.tscn" id="7_g6kol"]
-[ext_resource type="PackedScene" uid="uid://cabv7a4j7bqqm" path="res://props/detonator.tscn" id="8_sm1v2"]
-[ext_resource type="PackedScene" uid="uid://nsphtc6jguss" path="res://characters/enemies/robot_crab.tscn" id="9_n8jhu"]
-[ext_resource type="PackedScene" uid="uid://b4pl1tbt55lq7" path="res://GUI/gui.tscn" id="10_f0frm"]
+[ext_resource type="PackedScene" uid="uid://b4pl1tbt55lq7" path="res://GUI/gui.tscn" id="1_kbp8w"]
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level_template" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_wdodk")]
-position = Vector2(360, 32)
+[node name="GUI" parent="." instance=ExtResource("1_kbp8w")]
 
-[node name="Blocks" type="Node2D" parent="."]
+[node name="Blocks" type="Node" parent="."]
 
-[node name="Block" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(152, 248)
+[node name="Enemies" type="Node" parent="."]
 
-[node name="Block1" parent="Blocks" instance=ExtResource("3_gxnfy")]
-position = Vector2(96, 248)
+[node name="Hazards" type="Node" parent="."]
 
-[node name="Block2" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(32, 248)
+[node name="Props" type="Node" parent="."]
 
-[node name="Block12" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(32, 184)
-
-[node name="Block13" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(32, 120)
-
-[node name="Block14" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(32, 56)
-
-[node name="Block3" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(336, 248)
-
-[node name="Block4" parent="Blocks" instance=ExtResource("3_gxnfy")]
-position = Vector2(280, 248)
-
-[node name="Block5" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(216, 248)
-
-[node name="Block6" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(504, 248)
-
-[node name="Block7" parent="Blocks" instance=ExtResource("3_gxnfy")]
-position = Vector2(448, 248)
-
-[node name="Block8" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(384, 248)
-
-[node name="Block20" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(352, 184)
-
-[node name="Block21" parent="Blocks" instance=ExtResource("3_gxnfy")]
-position = Vector2(480, 184)
-
-[node name="Block22" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(416, 184)
-
-[node name="Block9" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(688, 248)
-
-[node name="Block15" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(752, 312)
-
-[node name="Block16" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(816, 376)
-
-[node name="Block17" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(880, 312)
-
-[node name="Block18" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(944, 248)
-
-[node name="Block19" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(1008, 248)
-
-[node name="Block23" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(1072, 248)
-
-[node name="Block24" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(1072, 184)
-
-[node name="Block25" parent="Blocks" instance=ExtResource("2_06pv1")]
-position = Vector2(1072, 120)
-
-[node name="Block10" parent="Blocks" instance=ExtResource("3_gxnfy")]
-position = Vector2(632, 248)
-
-[node name="Block11" parent="Blocks" instance=ExtResource("4_2phx5")]
-position = Vector2(568, 248)
-
-[node name="Hazards" type="Node2D" parent="."]
-
-[node name="SawingPlatform" parent="Hazards" instance=ExtResource("5_h0xmv")]
-position = Vector2(424, 136)
-
-[node name="Collectables" type="Node2D" parent="."]
-
-[node name="Battery" parent="Collectables" instance=ExtResource("6_n8e0l")]
-position = Vector2(608, 136)
-
-[node name="ExplodingBox" parent="." instance=ExtResource("7_g6kol")]
-position = Vector2(1008, 184)
-
-[node name="Detonator" parent="." instance=ExtResource("8_sm1v2")]
-position = Vector2(816, 280)
-
-[node name="RobotCrab" parent="." instance=ExtResource("9_n8jhu")]
-position = Vector2(136, 184)
-
-[node name="GUI" parent="." instance=ExtResource("10_f0frm")]
+[node name="Collectables" type="Node" parent="."]
