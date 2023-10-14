@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cep6ce7dawqa3"]
+
+[ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_aog5w"]
+[ext_resource type="Script" path="res://GUI/you_made_it.gd" id="2_5qy3v"]
+
+[node name="YouMadeIt" instance=ExtResource("1_aog5w")]
+script = ExtResource("2_5qy3v")
+
+[node name="MessageLargeFont" parent="MarginContainer/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 48
+text = "You Made It!"
+horizontal_alignment = 1
+
+[node name="MessageSmallFont" parent="MarginContainer/VBoxContainer" index="2"]
+text = "Think you could do it better?
+
+Press play again for another go
+
+"
+horizontal_alignment = 1
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
+text = "Play Again"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4pl1tbt55lq7"]
+[gd_scene load_steps=7 format=3 uid="uid://b4pl1tbt55lq7"]
 
 [ext_resource type="Texture2D" uid="uid://chajhvn54lqob" path="res://assets/art/png_files/battery/battery1.png" id="1_2m33t"]
 [ext_resource type="Script" path="res://GUI/gui.gd" id="1_xxfuq"]
 [ext_resource type="Texture2D" uid="uid://ba5fq35f8of00" path="res://assets/art/png_files/robot-crab/robot_crab0.png" id="2_1xqmf"]
+[ext_resource type="Theme" uid="uid://4p1n7tjcqmfy" path="res://GUI/theme.tres" id="4_fjyi3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlaxt"]
 bg_color = Color(0.368627, 0.427451, 0.937255, 1)
@@ -55,7 +56,8 @@ offset_left = 536.0
 offset_top = 8.0
 offset_right = 592.0
 offset_bottom = 75.0
-theme_override_font_sizes/font_size = 46
+theme = ExtResource("4_fjyi3")
+theme_override_font_sizes/font_size = 36
 text = "0
 "
 horizontal_alignment = 1

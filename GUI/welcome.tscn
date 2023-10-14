@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpfylfd4q1mpl"]
+
+[ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_lm8db"]
+[ext_resource type="Script" path="res://GUI/welcome.gd" id="2_28k4v"]
+
+[node name="Welcome" instance=ExtResource("1_lm8db")]
+script = ExtResource("2_28k4v")
+
+[node name="MessageLargeFont" parent="MarginContainer/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 48
+text = "Welcome!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageSmallFont" parent="MarginContainer/VBoxContainer" index="2"]
+text = "The crazy robot crabs must be stopped!
+A and D or arrow keys to move
+Space to Jump
+Squash the robot crabs 
+Collect batteries for energy
+Escape the level!"
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
+text = "Play Robot Miner"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

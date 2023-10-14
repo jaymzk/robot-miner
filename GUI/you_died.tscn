@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://uv38kddf47ms"]
+
+[ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_l2dmq"]
+[ext_resource type="Script" path="res://GUI/you_died.gd" id="2_1huc1"]
+
+[node name="YouDied" instance=ExtResource("1_l2dmq")]
+script = ExtResource("2_1huc1")
+
+[node name="MessageLargeFont" parent="MarginContainer/VBoxContainer" index="1"]
+theme_override_font_sizes/font_size = 48
+text = "You Died!"
+horizontal_alignment = 1
+
+[node name="MessageSmallFont" parent="MarginContainer/VBoxContainer" index="2"]
+text = "Better luck next time.
+Why not press play again
+ to have another go?
+"
+horizontal_alignment = 1
+
+[node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
+text = "Play Again"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
