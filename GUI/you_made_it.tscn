@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cep6ce7dawqa3"]
+[gd_scene load_steps=4 format=3 uid="uid://cep6ce7dawqa3"]
 
 [ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_aog5w"]
 [ext_resource type="Script" path="res://GUI/you_made_it.gd" id="2_5qy3v"]
+[ext_resource type="PackedScene" uid="uid://baqeu2l2bgbol" path="res://assets/music/fanfare_intro.tscn" id="3_j3xi1"]
 
 [node name="YouMadeIt" instance=ExtResource("1_aog5w")]
 script = ExtResource("2_5qy3v")
@@ -21,5 +22,7 @@ horizontal_alignment = 1
 
 [node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
 text = "Play Again"
+
+[node name="FanfareIntro" parent="." index="1" instance=ExtResource("3_j3xi1")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

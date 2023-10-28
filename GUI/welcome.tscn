@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpfylfd4q1mpl"]
+[gd_scene load_steps=4 format=3 uid="uid://cpfylfd4q1mpl"]
 
 [ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_lm8db"]
 [ext_resource type="Script" path="res://GUI/welcome.gd" id="2_28k4v"]
+[ext_resource type="PackedScene" uid="uid://baqeu2l2bgbol" path="res://assets/music/fanfare_intro.tscn" id="3_kws0o"]
 
 [node name="Welcome" instance=ExtResource("1_lm8db")]
 script = ExtResource("2_28k4v")
@@ -22,5 +23,7 @@ Escape the level!"
 
 [node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
 text = "Play Robot Miner"
+
+[node name="FanfareIntro" parent="." index="1" instance=ExtResource("3_kws0o")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uv38kddf47ms"]
+[gd_scene load_steps=4 format=3 uid="uid://uv38kddf47ms"]
 
 [ext_resource type="PackedScene" uid="uid://cvq31bhym3tjo" path="res://GUI/ui_template.tscn" id="1_l2dmq"]
 [ext_resource type="Script" path="res://GUI/you_died.gd" id="2_1huc1"]
+[ext_resource type="AudioStream" uid="uid://b313gi6n7sp2a" path="res://assets/music/Robot_Miner_End_Credits.mp3" id="3_2rxly"]
 
 [node name="YouDied" instance=ExtResource("1_l2dmq")]
 script = ExtResource("2_1huc1")
@@ -20,5 +21,9 @@ horizontal_alignment = 1
 
 [node name="ButtonPlay" parent="MarginContainer/VBoxContainer" index="3"]
 text = "Play Again"
+
+[node name="EndCredits" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_2rxly")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

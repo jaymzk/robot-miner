@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://baqeu2l2bgbol"]
+
+[ext_resource type="AudioStream" uid="uid://dplcj5wmys5jf" path="res://assets/music/Robot_Miner_Fanfare_Intro.mp3" id="1_4s11x"]
+
+[node name="FanfareIntro" type="AudioStreamPlayer"]
+stream = ExtResource("1_4s11x")
+autoplay = true

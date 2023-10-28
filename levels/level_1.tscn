@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drmql0r1vhcnd"]
+[gd_scene load_steps=13 format=3 uid="uid://drmql0r1vhcnd"]
 
 [ext_resource type="PackedScene" uid="uid://dctofa20sj64d" path="res://levels/level_template.tscn" id="1_wj60b"]
 [ext_resource type="PackedScene" uid="uid://b5ccpwpgm0sip" path="res://world/block.tscn" id="2_bilq8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c40wvbvsp1x50" path="res://world/door.tscn" id="6_gp3dg"]
 [ext_resource type="PackedScene" uid="uid://nsphtc6jguss" path="res://characters/enemies/robot_crab.tscn" id="7_lwewv"]
 [ext_resource type="PackedScene" uid="uid://dt4i3niuile0" path="res://props/battery.tscn" id="8_5x1x3"]
+[ext_resource type="AudioStream" uid="uid://bb7red8eehual" path="res://assets/music/Robot_Miner_Main_Theme.mp3" id="12_r68vy"]
 
 [node name="Level_1" instance=ExtResource("1_wj60b")]
 
@@ -1392,3 +1393,7 @@ position = Vector2(2848, 528)
 
 [node name="Player" parent="." index="6" instance=ExtResource("5_jwt3x")]
 position = Vector2(144, 360)
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("12_r68vy")
+autoplay = true
