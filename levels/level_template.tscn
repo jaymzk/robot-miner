@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dctofa20sj64d"]
+[gd_scene load_steps=4 format=3 uid="uid://dctofa20sj64d"]
 
 [ext_resource type="PackedScene" uid="uid://b4pl1tbt55lq7" path="res://GUI/gui.tscn" id="1_kbp8w"]
+[ext_resource type="PackedScene" uid="uid://7i2u6ckv6xqm" path="res://characters/player/player.tscn" id="2_5phgx"]
+[ext_resource type="PackedScene" uid="uid://c40wvbvsp1x50" path="res://world/door.tscn" id="3_h4ioq"]
 
 [node name="Level_template" type="Node2D"]
 
@@ -15,3 +17,8 @@
 [node name="Props" type="Node" parent="."]
 
 [node name="Collectables" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_5phgx")]
+position = Vector2(35, 119)
+
+[node name="Door" parent="." instance=ExtResource("3_h4ioq")]

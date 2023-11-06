@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drmql0r1vhcnd"]
+[gd_scene load_steps=11 format=3 uid="uid://drmql0r1vhcnd"]
 
 [ext_resource type="PackedScene" uid="uid://dctofa20sj64d" path="res://levels/level_template.tscn" id="1_wj60b"]
 [ext_resource type="PackedScene" uid="uid://b5ccpwpgm0sip" path="res://world/block.tscn" id="2_bilq8"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbvnkpy1uike8" path="res://world/block_2.tscn" id="4_o7e1l"]
 [ext_resource type="PackedScene" uid="uid://cabv7a4j7bqqm" path="res://props/detonator.tscn" id="5_56r0w"]
 [ext_resource type="PackedScene" uid="uid://cr1qk5bpy8jnc" path="res://hazards/sawing_platform.tscn" id="5_jmwco"]
-[ext_resource type="PackedScene" uid="uid://7i2u6ckv6xqm" path="res://characters/player/player.tscn" id="5_jwt3x"]
 [ext_resource type="PackedScene" uid="uid://car2p30xf4otj" path="res://props/exploding_box.tscn" id="5_pls1v"]
-[ext_resource type="PackedScene" uid="uid://c40wvbvsp1x50" path="res://world/door.tscn" id="6_gp3dg"]
 [ext_resource type="PackedScene" uid="uid://nsphtc6jguss" path="res://characters/enemies/robot_crab.tscn" id="7_lwewv"]
 [ext_resource type="PackedScene" uid="uid://dt4i3niuile0" path="res://props/battery.tscn" id="8_5x1x3"]
 [ext_resource type="AudioStream" uid="uid://bb7red8eehual" path="res://assets/music/Robot_Miner_Main_Theme.mp3" id="12_r68vy"]
@@ -1227,9 +1225,6 @@ position = Vector2(800, 320)
 [node name="Block24" parent="Blocks" index="403" instance=ExtResource("4_o7e1l")]
 position = Vector2(992, 384)
 
-[node name="Door" parent="Blocks" index="404" instance=ExtResource("6_gp3dg")]
-position = Vector2(2912, 384)
-
 [node name="RobotCrab" parent="Enemies" index="0" instance=ExtResource("7_lwewv")]
 position = Vector2(352, 384)
 
@@ -1391,9 +1386,17 @@ position = Vector2(2648, 280)
 [node name="Battery7" parent="Collectables" index="8" instance=ExtResource("8_5x1x3")]
 position = Vector2(2848, 528)
 
-[node name="Player" parent="." index="6" instance=ExtResource("5_jwt3x")]
-position = Vector2(144, 360)
-
-[node name="MainTheme" type="AudioStreamPlayer" parent="." index="7"]
+[node name="MainTheme" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("12_r68vy")
 autoplay = true
+
+[node name="Player" parent="." index="7"]
+position = Vector2(128, 336)
+
+[node name="PlayerCamera" parent="Player" index="3"]
+limit_left = 0
+
+[node name="Door" parent="." index="8"]
+position = Vector2(2912, 384)
+
+[editable path="Player"]
